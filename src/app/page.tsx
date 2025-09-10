@@ -13,8 +13,8 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Deteksi Penyakit Tanaman Vanili</h1>
-          <p className="text-muted-foreground">Upload gambar daun vanili untuk deteksi penyakit</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">AgroVani</h1>
+          <p className="text-muted-foreground">Sistem Cerdas Pendeteksi Penyakit Tanaman  Vanili</p>
         </div>
 
         {error && (

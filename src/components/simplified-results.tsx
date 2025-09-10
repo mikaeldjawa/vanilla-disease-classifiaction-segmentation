@@ -31,6 +31,7 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
     return "outline"
   }
 
+
   const getSeverityIcon = (isHealthy: boolean, confidence: number) => {
     if (isHealthy) return <CheckCircle className="w-5 h-5 text-green-600" />
     if (confidence >= 70) return <AlertTriangle className="w-5 h-5 text-red-600" />
