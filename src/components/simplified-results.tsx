@@ -70,9 +70,6 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
             <Badge variant={isHealthy ? "default" : getSeverityColor(confidence)} className="text-lg px-4 py-2">
               {data.dominant_prediction.name}
             </Badge>
-            <p className="text-muted-foreground">
-              Tingkat kepercayaan: <span className="font-semibold">{confidence}%</span>
-            </p>
           </div>
         </CardHeader>
       </Card>
