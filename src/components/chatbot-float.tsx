@@ -6,21 +6,17 @@ import { Input } from "@/components/ui/input"
 import { MessageCircle, X, Send, Bot, User, Loader2, RotateCcw } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
 import { useChatbot } from "@/hooks/use-chatbot"
-
-const FOLLOW_UP_QUESTIONS = [
-  "Bagaimana cara mengatasi penyakit Fusarium?",
-  "Bagaimana cara mencegah penyakit Antraknosa?",
-  "Kapan waktu terbaik untuk menyemprot fungisida?",
-  "Apa tanda-tanda awal penyakit pada daun vanili?",
-  "Bagaimana cara merawat tanaman vanili yang sehat?",
-  "Apakah penyakit ini bisa menular ke tanaman lain?",
-  "Berapa lama proses penyembuhan tanaman vanili?",
-]
+import { useInitChatbot } from "@/hooks/use-init-chatbot"
+import { useTranslations } from "next-intl"
 
 export function ChatbotFloat() {
   const { isChatOpen, messages, isSendingMessage, setChatOpen, sendMessage, resetChat } = useChatbot()
   const [inputText, setInputText] = useState("")
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const t = useTranslations("prediction")
+
+  // Inject greeting saat chatbot dibuka
+  useInitChatbot()
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -44,25 +40,24 @@ export function ChatbotFloat() {
     <>
       <Button
         onClick={() => setChatOpen(true)}
-        className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg transition-all duration-300 z-50 ${isChatOpen ? "scale-0" : "scale-100"
-          }`}
+        className={`fixed bottom-6 right-6 w-14 h-14 rounded-full shadow-lg transition-all duration-300 z-50 ${isChatOpen ? "scale-0" : "scale-100"}`}
         size="icon"
       >
         <MessageCircle className="w-6 h-6" />
       </Button>
 
       {isChatOpen && (
-        <Card className="fixed bottom-6 right-6 w-full max-w-sm sm:w-96 h-[70vh] max-h-[500px] shadow-2xl z-50 flex flex-col mx-4 sm:mx-0 pt-0">
+        <Card className="fixed bottom-6 right-6 w-full max-w-xs sm:max-w-lg h-[70vh] max-h-[600px] shadow-2xl z-50 flex flex-col mx-4 sm:mx-0 pt-0">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 bg-primary text-primary-foreground rounded-t-lg flex-shrink-0 pt-3">
             <CardTitle className="text-lg flex items-center gap-2">
               <Bot className="w-5 h-5" />
-              Asisten
+              Chatbot
             </CardTitle>
             <div className="flex items-center gap-1">
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={resetChat}
+                onClick={() => resetChat(t("chatbot.greetings"))}
                 className="text-primary-foreground hover:bg-primary-foreground/20"
                 title="Mulai percakapan baru"
               >
@@ -92,8 +87,7 @@ export function ChatbotFloat() {
                     </div>
                   )}
                   <div
-                    className={`max-w-[85%] sm:max-w-[80%] p-3 rounded-lg text-sm break-words ${message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted"
-                      }`}
+                    className={`max-w-[85%] sm:max-w-[80%] p-3 rounded-lg text-sm break-words ${message.sender === "user" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
                   >
                     {message.text}
                   </div>
@@ -111,7 +105,9 @@ export function ChatbotFloat() {
                   </div>
                   <div className="bg-muted p-3 rounded-lg text-sm flex items-center gap-2">
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span className="text-muted-foreground">Sedang mengetik...</span>
+                    <span className="text-muted-foreground">
+                      {t("chatbot.typing")}
+                    </span>
                   </div>
                 </div>
               )}
@@ -120,16 +116,19 @@ export function ChatbotFloat() {
 
             {messages.length === 1 && (
               <div className="p-4 border-t flex-shrink-0">
-
-                <div className="space-y-1 max-h-24 sm:max-h-32 overflow-y-auto">
-                  {FOLLOW_UP_QUESTIONS.slice(0, 4).map((question, index) => (
+                <div className="space-y-1 overflow-y-auto">
+                  {Array.from({ length: 5 }).map((_, index) => (
                     <button
                       key={index}
-                      onClick={() => handleQuestionClick(question)}
+                      onClick={() =>
+                        handleQuestionClick(
+                          t(`chatbot.followUpQuestions.${index + 1}`)
+                        )
+                      }
                       className="w-full text-left text-xs p-2 rounded bg-muted hover:bg-muted/80 transition-colors disabled:opacity-50"
                       disabled={isSendingMessage}
                     >
-                      {question}
+                      {t(`chatbot.followUpQuestions.${index + 1}`)}
                     </button>
                   ))}
                 </div>
@@ -141,7 +140,7 @@ export function ChatbotFloat() {
                 <Input
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  placeholder="Ketik pertanyaan Anda..."
+                  placeholder={t("chatbot.placeholderInput")}
                   onKeyPress={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault()
@@ -157,7 +156,11 @@ export function ChatbotFloat() {
                   disabled={!inputText.trim() || isSendingMessage}
                   className="flex-shrink-0"
                 >
-                  {isSendingMessage ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                  {isSendingMessage ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4" />
+                  )}
                 </Button>
               </div>
             </div>

@@ -8,6 +8,7 @@ import { useState } from "react"
 import type { DiseaseClassificationResponse } from "@/lib/types"
 import { useAppStore } from "@/stores/app-store"
 import { useChatbot } from "@/hooks/use-chatbot"
+import { useTranslations } from "next-intl"
 
 interface SimplifiedResultsProps {
   data: DiseaseClassificationResponse
@@ -16,6 +17,7 @@ interface SimplifiedResultsProps {
 }
 
 export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedResultsProps) {
+  const t = useTranslations("prediction")
   const [showOverlay, setShowOverlay] = useState(true)
   const { setChatOpen, saveResults } = useAppStore()
   const { sendMessage } = useChatbot()
@@ -57,7 +59,7 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onReset} className="gap-2">
           <ArrowLeft className="w-4 h-4" />
-          Upload Gambar Baru
+          {t("result.backButtonLabel")}
         </Button>
       </div>
 
@@ -65,7 +67,7 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
         <CardHeader className="text-center pb-4">
           <div className="flex items-center justify-center gap-2 mb-2">
             {getSeverityIcon(isHealthy, confidence)}
-            <CardTitle className="text-xl">Hasil Diagnosis</CardTitle>
+            <CardTitle className="text-xl">{t("result.predictionResult")}</CardTitle>
           </div>
           <div className="space-y-2">
             <Badge variant={isHealthy ? "default" : getSeverityColor(confidence)} className="text-lg px-4 py-2">
@@ -78,17 +80,17 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">Perbandingan Gambar</CardTitle>
+            <CardTitle className="text-lg">{t("result.imageComparison")}</CardTitle>
             <Button variant="outline" size="sm" onClick={() => setShowOverlay(!showOverlay)} className="gap-2">
               {showOverlay ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {showOverlay ? "Sembunyikan Overlay" : "Tampilkan Overlay"}
+              {showOverlay ? `${t("result.hideOverlay")}` : `${t("result.showOverlay")}`}
             </Button>
           </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="space-y-2">
-              <h4 className="font-medium text-center">{showOverlay ? "Area Terdeteksi" : "Gambar Asli"}</h4>
+              <h4 className="font-medium text-center">{showOverlay ? `${t("result.detectedArea")}` : `${t("result.originalImage")}`}</h4>
               <div className="relative aspect-square max-w-md mx-auto">
                 <img
                   src={
@@ -108,11 +110,11 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
       <div className="flex flex-col sm:flex-row gap-3">
         <Button className="flex-1 gap-2" size="lg" onClick={handleExpertConsultation}>
           <MessageCircle className="w-4 h-4" />
-          Konsultasi dengan Ahli
+          {t("result.consultationWithChatbot")}
         </Button>
         <Button variant="outline" className="flex-1 bg-transparent gap-2" size="lg" onClick={handleSaveResults}>
           <Download className="w-4 h-4" />
-          Simpan Hasil
+          {t("result.saveResult")}
         </Button>
       </div>
     </div>

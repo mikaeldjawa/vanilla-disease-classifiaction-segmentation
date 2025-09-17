@@ -1,0 +1,54 @@
+{
+  "prediction": {
+    "home": {
+      "appName": "AgroVani",
+      "title": "Sistem Cerdas Pendeteksi Penyakit Tanaman Vanili",
+      "uploadTitle": "Unggah Gambar Vanili",
+      "uploadSubtitle": "Seret & lepas gambar atau klik untuk memilih file",
+      "uploadFormat": "Format: JPG, PNG, JPEG (Maks 10MB)",
+      "selectImage": "Pilih Gambar",
+      "uploadImage": "Unggah Gambar",
+      "steps": {
+        "1": {
+          "title": "Unggah Gambar",
+          "subtitle": "Pilih foto vanili yang akan dianalisis"
+        },
+        "2": {
+          "title": "Analisis",
+          "subtitle": "Sistem menganalisis penyakit tanaman vanili"
+        },
+        "3": {
+          "title": "Hasil Analisis",
+          "subtitle": "Dapatkan hasil analisis"
+        }
+      },
+      "changeImage": "Ganti Gambar",
+      "diseasePrediction": "Prediksi Penyakit",
+      "analyze": "Menganalisis"
+    },
+    "result": {
+      "backButtonLabel": "Upload Gambar Baru",
+      "predictionResult": "Hasil Prediksi",
+      "imageComparison": "Perbandingan Gambar",
+      "hideOverlay": "Sembunyikan Overlay",
+      "showOverlay": "Tampilkan Overlay",
+      "detectedArea": "Area yang Terdeteksi",
+      "originalImage": "Gambar asli",
+      "consultationWithChatbot": "Konsultasi dengan Chatbot",
+      "saveResult": "Simpan Hasil"
+    },
+    "chatbot": {
+      "greetings": "Halo! Saya siap membantu Anda dengan pertanyaan seputar vanili dan penyakitnya. Silakan pilih pertanyaan di bawah atau ketik pertanyaan Anda sendiri.",
+      "followUpQuestions": {
+        "1": "Bagaimana cara mengobati Fusarium?",
+        "2": "Bagaimana cara mencegah Antraknosa?",
+        "3": "Kapan adalah waktu yang tepat untuk spray fungisida?",
+        "4": "Apa tanda awal penyakit pada daun?",
+        "5": "Bagaimana cara memelihara tanaman vanili yang sehat?"
+      },
+      "typing": "Mengetik...",
+      "placeholderInput": "Ketik pesan Anda disini...",
+      "error": "Terjadi kesalahan, silakan coba lagi nanti."
+    }
+  }
+}

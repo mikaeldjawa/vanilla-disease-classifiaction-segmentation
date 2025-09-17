@@ -1,0 +1,54 @@
+{
+  "prediction": {
+    "home": {
+      "appName": "AgroVani",
+      "title": "Intelligent System for Detecting Vanilla Plant Diseases",
+      "uploadTitle": "Upload Vanilla Image",
+      "uploadSubtitle": "Drag & drop image or click to select file",
+      "uploadFormat": "Format: JPG, PNG, JPEG (Max 10MB)",
+      "selectImage": "Select Image",
+      "uploadImage": "Upload Image",
+      "steps": {
+        "1": {
+          "title": "Upload Image",
+          "subtitle": "Select a vanilla photo to be analyzed"
+        },
+        "2": {
+          "title": "Analysis",
+          "subtitle": "The system analyzes vanilla plant diseases"
+        },
+        "3": {
+          "title": "Analysis Results",
+          "subtitle": "Get the analysis results"
+        }
+      },
+      "changeImage": "Change Image",
+      "diseasePrediction": "Disease Prediction",
+      "analyze": "Analyze"
+    },
+    "result": {
+      "backButtonLabel": "Upload New Image",
+      "predictionResult": "Prediction Result",
+      "imageComparison": "Image Comparison",
+      "hideOverlay": "Hide Overlay",
+      "showOverlay": "Show Overlay",
+      "detectedArea": "Detected Area",
+      "originalImage": "Original Image",
+      "consultationWithChatbot": "Consultation with Chatbot",
+      "saveResult": "Save Result"
+    },
+    "chatbot": {
+      "greetings": "Hello! I'm ready to help you with any questions about vanilla and its diseases. Please select a question below or type your own.",
+      "followUpQuestions": {
+        "1": "How do you treat Fusarium?",
+        "2": "How do you prevent Antraknosa?",
+        "3": "When is the best time to spray fungicides?",
+        "4": "What are the early signs of disease on leaves?",
+        "5": "How do you care for healthy vanilla plants?"
+      },
+      "typing": "Typing...",
+      "placeholderInput": "Type your message here...",
+      "error": "An error occurred, please try again later."
+    }
+  }
+}

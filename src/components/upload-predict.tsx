@@ -5,6 +5,7 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Upload, ImageIcon, Loader2 } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 interface UploadPredictProps {
   onUpload: (file: File) => void
@@ -16,6 +17,7 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
   const [preview, setPreview] = useState<string | null>(null)
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const t = useTranslations("prediction")
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault()
@@ -96,18 +98,18 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
                         }
                       }}
                     >
-                      Ganti Gambar
+                      {t("home.changeImage")}
                     </Button>
                     <Button onClick={handlePredict} disabled={isLoading}>
                       {isLoading ? (
                         <>
                           <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Menganalisis...
+                          {t("home.analyze")}...
                         </>
                       ) : (
                         <>
                           <ImageIcon className="w-4 h-4 mr-2" />
-                          Prediksi Penyakit
+                          {t("home.diseasePrediction")}
                         </>
                       )}
                     </Button>
@@ -120,13 +122,13 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
                   <Upload className="w-8 h-8 text-primary" />
                 </div>
                 <div className="text-center space-y-2">
-                  <h3 className="text-lg font-semibold">Upload Gambar Daun Vanili</h3>
-                  <p className="text-muted-foreground">Drag & drop gambar atau klik untuk memilih file</p>
-                  <p className="text-xs text-muted-foreground">Format: JPG, PNG, JPEG (Max 10MB)</p>
+                  <h3 className="font-semibold text-lg">{t("home.uploadTitle")}</h3>
+                  <p className="text-muted-foreground">{t("home.uploadSubtitle")}</p>
+                  <p className="text-xs text-muted-foreground">{t("home.uploadFormat")}</p>
                 </div>
                 <Button onClick={() => fileInputRef.current?.click()} className="mt-4">
                   <Upload className="w-4 h-4 mr-2" />
-                  Pilih Gambar
+                  {t("home.selectImage")}
                 </Button>
               </>
             )}
@@ -137,27 +139,18 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-        <div className="space-y-2">
-          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-            <span className="text-primary font-bold">1</span>
-          </div>
-          <h4 className="font-medium">Upload Gambar</h4>
-          <p className="text-sm text-muted-foreground">Pilih foto vanili yang akan dianalisis</p>
-        </div>
-        <div className="space-y-2">
-          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-            <span className="text-primary font-bold">2</span>
-          </div>
-          <h4 className="font-medium">Analysis</h4>
-          <p className="text-sm text-muted-foreground">Sistem menganalisis penyakit pada daun</p>
-        </div>
-        <div className="space-y-2">
-          <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-            <span className="text-primary font-bold">3</span>
-          </div>
-          <h4 className="font-medium">Hasil Diagnosis</h4>
-          <p className="text-sm text-muted-foreground">Dapatkan hasil dan rekomendasi penanganan</p>
-        </div>
+        {
+          Array.from({ length: 3 }).map((_, index) => (
+            <div key={index} className="space-y-2">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <span className="text-primary font-bold text-xl">{index + 1}</span>
+              </div>
+              <h4 className="font-medium text-lg">{t(`home.steps.${index + 1}.title`)}</h4>
+              <p className="text-muted-foreground">{t(`home.steps.${index + 1}.subtitle`)}</p>
+            </div>
+          ))
+        }
+
       </div>
     </div>
   )

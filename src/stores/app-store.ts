@@ -20,17 +20,8 @@ interface AppActions {
   setChatOpen: (isOpen: boolean) => void;
   addMessage: (message: Message) => void;
   setSendingMessage: (isSending: boolean) => void;
-  resetChat: () => void;
+  resetChat: (greeting?: string) => void;
 }
-
-const initialMessages: Message[] = [
-  {
-    id: "1",
-    text: "Halo! Saya siap membantu Anda dengan pertanyaan seputar penyakit vanili. Silakan pilih pertanyaan di bawah atau ketik pertanyaan Anda sendiri.",
-    sender: "bot",
-    timestamp: new Date(),
-  },
-];
 
 export const useAppStore = create<AppState & AppActions>((set, get) => ({
   // Initial state
@@ -39,7 +30,7 @@ export const useAppStore = create<AppState & AppActions>((set, get) => ({
   originalImage: null,
   error: null,
   isChatOpen: false,
-  messages: initialMessages,
+  messages: [], // greeting di-inject belakangan
   isSendingMessage: false,
 
   // Classification actions
@@ -88,5 +79,17 @@ export const useAppStore = create<AppState & AppActions>((set, get) => ({
       messages: [...state.messages, message],
     })),
   setSendingMessage: (isSending) => set({ isSendingMessage: isSending }),
-  resetChat: () => set({ messages: initialMessages }),
+  resetChat: (greeting) =>
+    set({
+      messages: greeting
+        ? [
+            {
+              id: "1",
+              text: greeting,
+              sender: "bot",
+              timestamp: new Date(),
+            },
+          ]
+        : [],
+    }),
 }));
