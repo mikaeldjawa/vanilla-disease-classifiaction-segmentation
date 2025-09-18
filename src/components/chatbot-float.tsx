@@ -15,7 +15,6 @@ export function ChatbotFloat() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const t = useTranslations("prediction")
 
-  // Inject greeting saat chatbot dibuka
   useInitChatbot()
 
   const scrollToBottom = () => {
@@ -125,7 +124,7 @@ export function ChatbotFloat() {
                           t(`chatbot.followUpQuestions.${index + 1}`)
                         )
                       }
-                      className="w-full text-left text-xs p-2 rounded bg-muted hover:bg-muted/80 transition-colors disabled:opacity-50"
+                      className="w-full text-left p-2 rounded bg-muted hover:bg-muted/80 transition-colors disabled:opacity-50"
                       disabled={isSendingMessage}
                     >
                       {t(`chatbot.followUpQuestions.${index + 1}`)}
