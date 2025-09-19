@@ -9,6 +9,7 @@ import type { DiseaseClassificationResponse } from "@/lib/types"
 import { useAppStore } from "@/stores/app-store"
 import { useChatbot } from "@/hooks/use-chatbot"
 import { useTranslations } from "next-intl"
+import parseCookies from "@/utils/parse-cookies"
 
 interface SimplifiedResultsProps {
   data: DiseaseClassificationResponse
@@ -21,6 +22,7 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
   const [showOverlay, setShowOverlay] = useState(true)
   const { setChatOpen, saveResults } = useAppStore()
   const { sendMessage } = useChatbot()
+  const cookies = parseCookies(document.cookie)
 
   const confidence = Math.round((data.pixel_distribution[data.dominant_prediction.name] || 0) * 100)
   const isHealthy =
@@ -41,7 +43,8 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
   }
 
   const handleExpertConsultation = () => {
-    const consultationMessage = `Saya baru saja mendeteksi penyakit "${data.dominant_prediction.name}". Bagaimana cara menangani penyakit ini?`
+
+    const consultationMessage = cookies.locale == "id" ? `Saya baru saja mendeteksi penyakit "${data.dominant_prediction.name}". Bagaimana cara menangani penyakit ini?` : `I just detected the disease "${data.dominant_prediction.name}". How do I treat this disease?`
 
     setChatOpen(true)
     // Send the consultation message after a brief delay to ensure chat is open
@@ -83,19 +86,20 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
             <CardTitle className="text-lg">{t("result.imageComparison")}</CardTitle>
             <Button variant="outline" size="sm" onClick={() => setShowOverlay(!showOverlay)} className="gap-2">
               {showOverlay ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {showOverlay ? `${t("result.hideOverlay")}` : `${t("result.showOverlay")}`}
+              {showOverlay ? `${t("result.hideOverlay")
+                }` : `${t("result.showOverlay")} `}
             </Button>
           </div>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="space-y-2">
-              <h4 className="font-medium text-center">{showOverlay ? `${t("result.detectedArea")}` : `${t("result.originalImage")}`}</h4>
+              <h4 className="font-medium text-center">{showOverlay ? `${t("result.detectedArea")} ` : `${t("result.originalImage")} `}</h4>
               <div className="relative aspect-square max-w-md mx-auto">
                 <img
                   src={
                     showOverlay
-                      ? `data:image/png;base64,${data.visualizations.overlay_image}`
+                      ? `data: image / png; base64, ${data.visualizations.overlay_image} `
                       : originalImage || "/placeholder.svg"
                   }
                   alt={showOverlay ? "Disease overlay" : "Original"}
