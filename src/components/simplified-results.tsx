@@ -60,31 +60,28 @@ export function SimplifiedResults({ data, originalImage, onReset }: SimplifiedRe
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={onReset} className="gap-2">
+        <Button variant="ghost" onClick={onReset} className="gap-2 cursor-pointer">
           <ArrowLeft className="w-4 h-4" />
           {t("result.backButtonLabel")}
         </Button>
       </div>
 
-      <Card className="border-2">
-        <CardHeader className="text-center pb-4">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            {getSeverityIcon(isHealthy, confidence)}
-            <CardTitle className="text-xl">{t("result.predictionResult")}</CardTitle>
-          </div>
-          <div className="space-y-2">
-            <Badge variant={isHealthy ? "default" : getSeverityColor(confidence)} className="text-lg px-4 py-2">
-              {data.dominant_prediction.name}
-            </Badge>
-          </div>
-        </CardHeader>
-      </Card>
-
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">{t("result.imageComparison")}</CardTitle>
-            <Button variant="outline" size="sm" onClick={() => setShowOverlay(!showOverlay)} className="gap-2">
+          <div className="flex flex-col items-center justify-center gap-2 mb-2">
+            <div className="flex gap-2 items-center justify-start">
+              {getSeverityIcon(isHealthy, confidence)}
+              <CardTitle className="text-xl">{t("result.predictionResult")}</CardTitle>
+            </div>
+            <div className="space-y-2">
+              <Badge variant={isHealthy ? "default" : getSeverityColor(confidence)} className="text-xl font-bold px-4 py-2">
+                {data.dominant_prediction.name}
+              </Badge>
+            </div>
+          </div>
+          <div className="flex items-center justify-center ">
+            {/* <CardTitle className="text-lg">{t("result.imageComparison")}</CardTitle> */}
+            <Button variant="outline" size="sm" onClick={() => setShowOverlay(!showOverlay)} className="gap-2 cursor-pointer">
               {showOverlay ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               {showOverlay ? `${t("result.hideOverlay")
                 }` : `${t("result.showOverlay")} `}

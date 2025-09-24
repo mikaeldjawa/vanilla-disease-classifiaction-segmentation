@@ -74,7 +74,7 @@ export function ChatbotFloat() {
           </CardHeader>
 
           <CardContent className="flex-1 flex flex-col p-0 min-h-0">
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 text-justify">
               {messages.map((message) => (
                 <div
                   key={message.id}
