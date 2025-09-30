@@ -114,7 +114,7 @@ export function ChatbotFloat() {
             </div>
 
             {messages.length === 1 && (
-              <div className="p-4 border-t flex-shrink-0">
+              <div className="p-4 border-t flex-shrink-0 max-h-32 md:max-h-full overflow-scroll">
                 <div className="space-y-1 overflow-y-auto">
                   {Array.from({ length: 5 }).map((_, index) => (
                     <button

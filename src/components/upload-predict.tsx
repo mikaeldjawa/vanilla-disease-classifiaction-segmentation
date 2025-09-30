@@ -65,7 +65,7 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-2xl mt-6 mx-auto">
       <Card className="border-2 border-dashed border-border hover:border-primary/50 transition-colors">
         <CardContent className="p-8">
           <div
@@ -118,12 +118,12 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
               </div>
             ) : (
               <>
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                <div className="w-10 sm:w-16 h-10 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center">
                   <Upload className="w-8 h-8 text-primary" />
                 </div>
                 <div className="text-center space-y-2">
-                  <h3 className="font-semibold text-lg">{t("home.uploadTitle")}</h3>
-                  <p className="text-muted-foreground">{t("home.uploadSubtitle")}</p>
+                  <h3 className="font-semibold sm:text-lg">{t("home.uploadTitle")}</h3>
+                  <p className="text-muted-foreground text-sm sm:text-lg">{t("home.uploadSubtitle")}</p>
                   <p className="text-xs text-muted-foreground">{t("home.uploadFormat")}</p>
                 </div>
                 <Button onClick={() => fileInputRef.current?.click()} className="mt-4">

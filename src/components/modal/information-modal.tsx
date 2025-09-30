@@ -48,7 +48,7 @@ export const InformationModal: React.FC<InformationModalProps> = ({
                    rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-50 
                    shadow-2xl shadow-slate-400/20 dark:border-slate-800 dark:from-slate-900 
                    dark:to-slate-950 dark:shadow-black/30
-                   p-0 overflow-hidden"
+                   p-0 overflow-scroll max-h-screen"
       >
 
         <div className="px-8 pb-10 pt-14">

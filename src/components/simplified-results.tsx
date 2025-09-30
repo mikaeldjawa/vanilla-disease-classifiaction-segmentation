@@ -76,7 +76,7 @@ export function SimplifiedResults({
   };
 
   return (
-    <div className="flex w-full overflow-hidden bg-slate-50 dark:bg-slate-950 lg:flex-row rounded-lg">
+    <div className="flex flex-col md:flex-row w-full overflow-hidden bg-slate-50 dark:bg-slate-950 lg:flex-row rounded-lg max-w-[80vh] mx-auto mt-10">
       {/* Kolom Kiri */}
       <div className="relative flex h-1/2 flex-col items-center justify-center bg-slate-100 p-4 dark:bg-slate-900 lg:h-[60vh] lg:w-3/5">
         <Button
@@ -88,7 +88,7 @@ export function SimplifiedResults({
           {t("result.backButtonLabel")}
         </Button>
 
-        <div className="relative aspect-square w-full max-w-lg overflow-hidden rounded-2xl shadow-2xl">
+        <div className="relative aspect-square w-full max-w-sm md:max-w-lg overflow-hidden rounded-2xl shadow-2xl">
           <img
             ref={imageRef}
             src={
@@ -131,7 +131,7 @@ export function SimplifiedResults({
               </h1>
             </div>
             <p
-              className={`text-4xl font-extrabold tracking-tight ${isHealthy
+              className={`text-2xl md:text-4xl font-extrabold tracking-tight ${isHealthy
                 ? "text-green-600 dark:text-green-400"
                 : "text-slate-800 dark:text-slate-100"
                 }`}
