@@ -137,21 +137,6 @@ export function UploadPredict({ onUpload, isLoading }: UploadPredictProps) {
           </div>
         </CardContent>
       </Card>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-        {
-          Array.from({ length: 3 }).map((_, index) => (
-            <div key={index} className="space-y-2">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <span className="text-primary font-bold text-xl">{index + 1}</span>
-              </div>
-              <h4 className="font-medium text-lg">{t(`home.steps.${index + 1}.title`)}</h4>
-              <p className="text-muted-foreground">{t(`home.steps.${index + 1}.subtitle`)}</p>
-            </div>
-          ))
-        }
-
-      </div>
     </div>
   )
 }

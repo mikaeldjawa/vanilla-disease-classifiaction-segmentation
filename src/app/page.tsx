@@ -4,6 +4,7 @@ import { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { gsap } from "gsap";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface SplashScreenProps {
   onFinished: () => void;
@@ -20,23 +21,20 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
   const logoPathRef = useRef<SVGPathElement | null>(null);
   const subtitleRef = useRef<HTMLParagraphElement | null>(null);
   const buttonWrapperRef = useRef<HTMLDivElement | null>(null);
+  const t = useTranslations("index")
 
   useEffect(() => {
-    // Ensure GSAP and its context method are available
     if (typeof gsap === "undefined" || typeof gsap.context !== "function") {
       console.error("GSAP is not loaded. Skipping animations.");
       const fallbackTimer = setTimeout(onFinished, 3000);
       return () => clearTimeout(fallbackTimer);
     }
 
-    // gsap.context() scopes animations and handles cleanup automatically.
     const ctx = gsap.context(() => {
       if (!subtitleRef.current || !logoPathRef.current || !buttonWrapperRef.current) return;
-
-      // Split subtitle into animatable characters
       const subtitleChars = subtitleRef.current.textContent?.split('').map(char => {
         const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
+        span.textContent = char === ' ' ? '\u00A0' : char;
         span.style.display = 'inline-block';
         return span;
       }) || [];
@@ -44,20 +42,17 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
       subtitleRef.current.textContent = '';
       subtitleChars.forEach(char => subtitleRef.current?.appendChild(char));
 
-      // --- INTRO ANIMATION ---
       gsap.set(["#title", subtitleChars, buttonWrapperRef.current], { opacity: 0, y: 20 });
 
       const logoPath = logoPathRef.current;
       const pathLength = logoPath.getTotalLength();
 
-      // Initial state for SVG drawing
       gsap.set(logoPath, {
         strokeDasharray: pathLength,
         strokeDashoffset: pathLength,
         opacity: 0,
       });
 
-      // Initial state for the logo container
       gsap.set("#logo", { scale: 0.95, opacity: 0 });
 
       const tl = gsap.timeline();
@@ -95,17 +90,12 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
           opacity: 1,
           duration: 1,
           ease: "expo.out"
-        }, "-=1.2"); // Animate the button in
+        }, "-=1.2");
 
-    }, containerRef); // Scope the animations to the container element
-
-    // Cleanup function to revert all animations when the component unmounts
+    }, containerRef);
     return () => ctx.revert();
-  }, [onFinished]); // Effect dependency
+  }, [onFinished]);
 
-  // --- INTERACTION HANDLERS ---
-
-  // Animate button on hover
   const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
     gsap.to(e.currentTarget, {
       scale: 1.05,
@@ -122,7 +112,6 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
     });
   };
 
-  // Animate out and call onFinished when button is clicked
   const handleStart = () => {
     if (!containerRef.current) return;
     gsap.to(containerRef.current, {
@@ -136,8 +125,9 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 bg-[url('/web-bg.webp')] bg-cover"
     >
+      <div className="absolute inset-0 bg-white/70"></div>
       <div id="logo" className="relative w-40 h-40">
         <svg
           className="w-full h-full text-green-600"
@@ -159,10 +149,10 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
           id="title"
           className="text-4xl md:text-5xl font-extrabold text-green-700 dark:text-green-400 tracking-wider"
         >
-          Agrovani
+          AgroVanil
         </h1>
         <p ref={subtitleRef} id="subtitle" className="text-gray-500 dark:text-gray-400 mt-2 text-lg">
-          Deteksi Cerdas, Panen Sehat
+          {t("slogan")}
         </p>
         <div ref={buttonWrapperRef} className="mt-8">
           <Link href={"/prediction"}>
@@ -172,10 +162,9 @@ export default function SplashScreen({ onFinished }: SplashScreenProps) {
               onMouseLeave={handleMouseLeave}
               className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-full text-lg transition-colors duration-300 cursor-pointer"
             >
-              Mulai Deteksi
+              {t("startButton")}
             </Button>
           </Link>
-
         </div>
       </div>
     </div>

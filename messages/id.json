@@ -1,27 +1,17 @@
 {
+  "index": {
+    "slogan": "Deteksi Cerdas, Panen Sehat",
+    "startButton": "Mulai Deteksi"
+  },
   "prediction": {
     "home": {
-      "appName": "AgroVani",
+      "appName": "AgroVanil",
       "title": "Sistem Cerdas Pendeteksi Penyakit Tanaman Vanili",
       "uploadTitle": "Unggah Gambar Vanili",
       "uploadSubtitle": "Seret & lepas gambar atau klik untuk memilih file",
       "uploadFormat": "Format: JPG, PNG, JPEG (Maks 10MB)",
       "selectImage": "Pilih Gambar",
       "uploadImage": "Unggah Gambar",
-      "steps": {
-        "1": {
-          "title": "Unggah Gambar",
-          "subtitle": "Pilih foto vanili yang akan dianalisis"
-        },
-        "2": {
-          "title": "Analisis",
-          "subtitle": "Sistem menganalisis penyakit tanaman vanili"
-        },
-        "3": {
-          "title": "Hasil Analisis",
-          "subtitle": "Dapatkan hasil analisis"
-        }
-      },
       "changeImage": "Ganti Gambar",
       "diseasePrediction": "Prediksi Penyakit",
       "analyze": "Menganalisis"
@@ -34,7 +24,7 @@
       "showOverlay": "Tampilkan Overlay",
       "detectedArea": "Area yang Terdeteksi",
       "originalImage": "Gambar asli",
-      "consultationWithChatbot": "Konsultasi dengan Chatbot",
+      "consultationWithChatbot": "Konsultasi",
       "saveResult": "Simpan Hasil"
     },
     "chatbot": {
@@ -49,6 +39,42 @@
       "typing": "Mengetik...",
       "placeholderInput": "Ketik pesan Anda disini...",
       "error": "Terjadi kesalahan, silakan coba lagi nanti."
+    },
+    "information": {
+      "heading": "Informasi Aplikasi",
+      "subHeading": "Tentang & Ucapan Terima Kasih",
+      "aboutHeading": "Tentang Aplikasi",
+      "aboutApp": "Website Deteksi Penyakit Tanaman Vanili ini dirancang untuk membantu petani dan peneliti mengidentifikasi penyakit pada tanaman vanili secara cepat dan akurat menggunakan teknologi terkini.",
+      "thankHeading": "Ucapan Terima Kasih",
+      "thankNote": "Tim Hibah Penelitian Fundamental Reguler mengucapkan terima kasih kepada [[Direktorat Riset, Teknologi dan Pengabdian Kepada Masyarakat, Kemendikbudristek]] atas dukungan [[Hibah Penelitian Terapan]] (Kontrak No: [[069/E5/PG.02.00.PT/2025]]).",
+      "teamName": "Tim Hibah Penelitian Terapan",
+      "university": "Universitas Gunadarma",
+      "year": "2025"
+    },
+    "help": {
+      "title": "Cara Kerja Deteksi Penyakit",
+      "subtitle": "Tiga langkah mudah untuk menganalisis gambar Anda.",
+      "steps": {
+        "1": {
+          "title": "Unggah Gambar:",
+          "desc": "Pilih gambar melalui klik atau seret dan lepas (drag & drop)."
+        },
+        "2": {
+          "title": "Mulai Prediksi:",
+          "desc": "Klik tombol \"Prediksi Penyakit\" untuk memulai analisis."
+        },
+        "3": {
+          "title": "Lihat Hasil:",
+          "desc": "Hasil analisis akan muncul dengan detail status penyakit atau informasi bahwa tanaman sehat/tidak sehat."
+        }
+      }
     }
+  },
+  "navigation": {
+    "homeLabel": "Beranda",
+    "infoLabel": "Informasi",
+    "predictLabel": "Prediksi",
+    "helpLabel": "Bantuan",
+    "changeLangLabel": "Ganti Bahasa"
   }
 }

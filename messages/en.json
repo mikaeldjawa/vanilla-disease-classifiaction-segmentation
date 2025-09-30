@@ -1,7 +1,11 @@
 {
+  "index": {
+    "slogan": "Smart Detection, Healthy Harvest",
+    "startButton": "Start Detection"
+  },
   "prediction": {
     "home": {
-      "appName": "AgroVani",
+      "appName": "AgroVanil",
       "title": "Intelligent System for Detecting Vanilla Plant Diseases",
       "uploadTitle": "Upload Vanilla Image",
       "uploadSubtitle": "Drag & drop image or click to select file",
@@ -34,7 +38,7 @@
       "showOverlay": "Show Overlay",
       "detectedArea": "Detected Area",
       "originalImage": "Original Image",
-      "consultationWithChatbot": "Consultation with Chatbot",
+      "consultationWithChatbot": "Consultation",
       "saveResult": "Save Result"
     },
     "chatbot": {
@@ -49,6 +53,42 @@
       "typing": "Typing...",
       "placeholderInput": "Type your message here...",
       "error": "An error occurred, please try again later."
+    },
+    "information": {
+      "heading": "Application Information",
+      "subHeading": "About & Acknowledgments",
+      "aboutHeading": "About the Application",
+      "aboutApp": "The Vanilla Plant Disease Detection website is designed to help farmers and researchers quickly and accurately identify diseases in vanilla plants using the latest technology.",
+      "thankHeading": "Acknowledgments",
+      "thankNote": "The Regular Fundamental Research Grant Team would like to thank the [[Directorate of Research, Technology, and Community Service, Kemendikbudristek]] for the support of the [[Applied Research Grant]] (Contract No: [[069/E5/PG.02.00.PT/2025]]).",
+      "teamName": "Applied Research Grant Team",
+      "university": "Gunadarma University",
+      "year": "2025"
+    },
+    "help": {
+      "title": "How Disease Detection Works",
+      "subtitle": "Three easy steps to analyze your image.",
+      "steps": {
+        "1": {
+          "title": "Upload Image:",
+          "desc": "Select an image by clicking or by dragging and dropping."
+        },
+        "2": {
+          "title": "Start Prediction:",
+          "desc": "Click the [[\"Predict Disease\"]] button to start the analysis."
+        },
+        "3": {
+          "title": "View Results:",
+          "desc": "The analysis results will appear with details on the disease status or information indicating if the plant is healthy/unhealthy."
+        }
+      }
     }
+  },
+  "navigation": {
+    "homeLabel": "Home",
+    "infoLabel": "Information",
+    "predictLabel": "Prediction",
+    "helpLabel": "Help",
+    "changeLangLabel": "Change Language"
   }
 }
